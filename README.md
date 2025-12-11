@@ -27,7 +27,7 @@ CSS
 
 Clone the repo:
 
-git clone https://github.com/your-username/whack-a-mole.git
+git clone https://github.com/your-username/Whack-A-Mole.git
 
 
 Install dependencies:
