@@ -5,35 +5,39 @@ const MOLE_HILL = "https://www.greatfrontend.com/img/questions/whack-a-mole/mole
 export default function App() {
   const [activeHoles , setActiveHoles] = useState(null);
   const [gameStarted , setGameStarted] = useState(false);
+  const [timeLeft , setTimeLeft] = useState(15);
   function randomHole(){
     const random = Math.floor(Math.random() * holesArray.length);
     setActiveHoles(random);
   }
   function gameStart(){
+    setTimeLeft(15);
     setGameStarted(true);
   }
   useEffect(()=>{
     if (!gameStarted) return;
     const interval = setInterval(() => {
     randomHole(); 
-  }, 1000);
-  const timeout = setTimeout(()=>{
+    setTimeLeft((prev) => {
+  if(prev<=1){
     clearInterval(interval);
     setGameStarted(false);
     setActiveHoles(null);
-  } , 15000);
-    return () => 
-    {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    }
+    return 0;
+  }
+  else
+  return prev-1;
+  });
+  }, 1000);
+  
+    return () => {clearInterval(interval)}
   },[gameStarted])
   return (
     <>
     <div className = "game-section">
     <h3>Score : 0</h3>
     <button onClick = {gameStart}>Start Game</button>
-    <h3>Time Left : 0</h3>
+    <h3>Time Left : {timeLeft}</h3>
     </div>
     <div className="grid">
      {holesArray.map((_ , index) => (
