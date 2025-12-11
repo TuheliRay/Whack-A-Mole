@@ -1,0 +1,43 @@
+body {
+  font-family: sans-serif;
+  background-color: rgb(255, 121, 143);
+}
+.game-section{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+.game-section button{
+  height: 40px;
+  width: 90px;
+  margin-top: 8px;
+}
+.mole{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100px;      
+  height: 70px;     /* FIXED HEIGHT */
+  justify-content: center;
+  align-items: flex-end;
+
+}
+.mole-img{
+  width: 80px;
+  height: auto;
+  margin-bottom: -18px;
+}
+.mole-hill{
+  position: absolute;
+  bottom: 0;
+  left: 60%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 x 3 grid */
+  gap: 60px;
+  width: max-content;
+  margin: auto;
+}
