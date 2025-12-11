@@ -20,20 +20,8 @@ Perfect beginner-friendly project to practice React state, effects, timers, and 
 
 🛠️ Tech Stack
 
-React (useState, useEffect)
-
-CSS Grid / Flexbox (for layout + animations)
-
-JavaScript (randomization, timers)
-
-📂 Folder Structure (Basic)
-src/
-│── components/
-│     ├── Hole.jsx
-│     └── Mole.jsx
-│── App.jsx
-│── App.css
-└── index.js
+React 
+CSS
 
 🔧 How to Run the Project
 
@@ -43,12 +31,10 @@ git clone https://github.com/your-username/whack-a-mole.git
 
 
 Install dependencies:
-
 npm install
 
 
 Start the game locally:
-
 npm start
 
 
