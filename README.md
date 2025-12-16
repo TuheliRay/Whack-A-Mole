@@ -27,7 +27,7 @@ CSS
 
 Clone the repo:
 
-git clone https://github.com/your-username/whack-a-mole.git
+git clone https://github.com/your-username/Whack-A-Mole.git
 
 
 Install dependencies:
@@ -35,7 +35,7 @@ npm install
 
 
 Start the game locally:
-npm start
+npm run dev
 
 
 It will open at http://localhost:3000
