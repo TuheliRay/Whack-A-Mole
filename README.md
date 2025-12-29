@@ -1,53 +1,78 @@
-Whack-a-Mole — React Mini Game
+# Whack-A-Mole
 
-A fun and interactive Whack-a-Mole game built using React!
-Moles randomly pop out of fixed holes, and the player tries to whack as many as possible within the time limit.
-Perfect beginner-friendly project to practice React state, effects, timers, and conditional rendering.
+A compact Whack-A-Mole web game built with React and Vite.
 
-🚀 Features
+**Live Preview**
+- Score the most hits before time runs out.
+- Cute mole sprites and responsive controls.
 
-🎯 Random mole pop-up logic
+**Screenshots**
 
-🕳️ Fixed 3×3 hole grid
+Add the screenshots to `public/screenshots/` with these filenames so the images render:
 
-⏱️ Start/Stop game controls
+- `public/screenshots/screenshot-1.png` (start view)
+- `public/screenshots/screenshot-2.png` (playing view)
 
-🐾 Animated mole appearing/disappearing
+![Start view](public/screenshots/screenshot-1.png)
 
-⭐ Score tracking
+![Playing view](public/screenshots/screenshot-2.png)
 
-⚛️ Built entirely with React + CSS
+## Features
 
-🛠️ Tech Stack
+- Simple 3x3 grid gameplay
+- Score and countdown timer
+- Click/tap mole to score
+- Built with React and Vite
 
-React 
-CSS
+## Files of interest
 
-🔧 How to Run the Project
+- [src/App.jsx](src/App.jsx) — main app and layout
+- [src/components/GameGrid.jsx](src/components/GameGrid.jsx) — grid and mole logic
+- [index.html](index.html) — HTML entry
 
-Clone the repo:
+## Setup & Run
 
-git clone https://github.com/your-username/Whack-A-Mole.git
-
+Prerequisites: Node.js (v16+ recommended) and npm.
 
 Install dependencies:
+
+```bash
 npm install
+```
 
+Run the dev server:
 
-Start the game locally:
+```bash
 npm run dev
+```
 
+Build for production:
 
-It will open at http://localhost:3000
+```bash
+npm run build
+```
 
-🎮 How to Play
+Preview the production build locally:
 
-Click Start Game
+```bash
+npm run preview
+```
 
-Moles will randomly pop out of the holes
+## How to add the screenshots
 
-Click on a mole to score points ✔️
+1. Create the folder `public/screenshots/` if it doesn't exist.
+2. Save the two attached images into that folder with the filenames above.
+3. Reload the app or open `README.md` in a markdown viewer.
 
-Game ends when the timer runs out
+## Controls
 
-Try to beat your high score!
+- Click or tap on the mole when it appears to increase score.
+- Press the Start button to begin a new round.
+
+## License
+
+This project is MIT-licensed — adapt as you like.
+
+---
+
+If you'd like, I can add the screenshot files into `public/screenshots/` for you now. Would you like me to do that?
