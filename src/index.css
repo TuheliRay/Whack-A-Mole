@@ -1,4 +1,4 @@
-body {
+/* body {
   font-family: sans-serif;
   background-color: rgb(255, 121, 143);
 }
@@ -17,7 +17,7 @@ body {
   flex-direction: column;
   position: relative;
   width: 100px;      
-  height: 70px;     /* FIXED HEIGHT */
+  height: 70px;     
   justify-content: center;
   align-items: flex-end;
 
@@ -36,8 +36,9 @@ body {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 x 3 grid */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 60px;
   width: max-content;
   margin: auto;
-}
+} */
+@import "tailwindcss";
