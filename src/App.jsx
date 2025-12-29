@@ -1,6 +1,8 @@
-import { useState , useEffect } from 'react';
+import { useState , useEffect, useRef } from 'react';
 
 const holesArray = Array(9).fill(null);
+import GameGrid from './components/GameGrid';
+
 const MOLE_HEAD = "https://www.greatfrontend.com/img/questions/whack-a-mole/mole-head.png";
 const MOLE_HILL = "https://www.greatfrontend.com/img/questions/whack-a-mole/mole-hill.png";
 
@@ -10,11 +12,29 @@ export default function App() {
   const [timeLeft , setTimeLeft] = useState(15);
   const [hasClicked , setHasClicked]=useState(false);
   const [score , setScore] = useState(0);
+  const moleTimerRef = useRef(null);
+  const moleHideRef = useRef(null);
+  const countdownRef = useRef(null);
 
-  function randomHole(){
-    const random = Math.floor(Math.random() * holesArray.length);
-    setActiveHoles(random);
-    setHasClicked(false);
+
+  function scheduleNextMole(){
+    const minDelay = 1500; // ms
+    const maxDelay = 2000; // ms
+    const delay = Math.floor(Math.random() * (maxDelay - minDelay) + minDelay);
+
+    moleTimerRef.current = setTimeout(() => {
+      const random = Math.floor(Math.random() * holesArray.length);
+      setActiveHoles(random);
+      setHasClicked(false);
+
+      const showDuration = 1200; // how long the mole stays visible
+      moleHideRef.current = setTimeout(() => {
+        setActiveHoles(null);
+      }, showDuration);
+
+      // schedule next appearance
+      scheduleNextMole();
+    }, delay);
   }
 
   function gameStart(){
@@ -29,23 +49,37 @@ export default function App() {
     setScore(prevScore => prevScore + 1);
   }
 
-  useEffect(()=>{
-    if (!gameStarted) return;
-    const interval = setInterval(() => {
-      randomHole(); 
+  useEffect(() => {
+    if (!gameStarted) {
+      // clear any running timers when game is not started
+      if (moleTimerRef.current) clearTimeout(moleTimerRef.current);
+      if (moleHideRef.current) clearTimeout(moleHideRef.current);
+      if (countdownRef.current) clearInterval(countdownRef.current);
+      setActiveHoles(null);
+      return;
+    }
+
+    // start countdown (every 1s)
+    countdownRef.current = setInterval(() => {
       setTimeLeft((prev) => {
-        if(prev<=1){
-          clearInterval(interval);
+        if (prev <= 1) {
+          clearInterval(countdownRef.current);
           setGameStarted(false);
-          setActiveHoles(null);
           return 0;
         }
-        else return prev-1;
+        return prev - 1;
       });
-    }, 2000);
-  
-    return () => {clearInterval(interval)}
-  },[gameStarted])
+    }, 1000);
+
+    // start mole appearances (recursive timeouts for variable intervals)
+    scheduleNextMole();
+
+    return () => {
+      if (moleTimerRef.current) clearTimeout(moleTimerRef.current);
+      if (moleHideRef.current) clearTimeout(moleHideRef.current);
+      if (countdownRef.current) clearInterval(countdownRef.current);
+    };
+  }, [gameStarted]);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-black via-gray-900 to-black flex flex-col items-center p-4 text-green-400 font-mono">
@@ -67,27 +101,13 @@ export default function App() {
       </div>
 
       {/* Game Grid */}
-      <div className="grid grid-cols-3 gap-4 sm:gap-6 w-full max-w-xs sm:max-w-sm">
-        {holesArray.map((_ , index) => (
-          <div 
-            className="relative w-full aspect-square bg-linear-to-b from-gray-800 to-gray-900 rounded-2xl shadow-inner flex items-center justify-center"
-            key={index}
-          >
-            {(activeHoles===index) && 
-              <img 
-                onClick={scoreUpdate}
-                className="absolute top-1 sm:top-2 w-14 sm:w-16 cursor-pointer animate-bounce active:scale-90"
-                src={MOLE_HEAD}
-              />
-            }
-
-            <img
-              className="absolute bottom-0 w-16 sm:w-20"
-              src={MOLE_HILL}
-            />
-          </div>
-        ))}
-      </div>
+      <GameGrid
+        holesArray={holesArray}
+        activeHoles={activeHoles}
+        onHit={scoreUpdate}
+        MOLE_HEAD={MOLE_HEAD}
+        MOLE_HILL={MOLE_HILL}
+      />
     </div>
   );
 }
