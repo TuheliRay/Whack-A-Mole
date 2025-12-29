@@ -10,11 +10,12 @@ A compact Whack-A-Mole web game built with React and Vite.
 
 Add the screenshots to `public/screenshots/` with these filenames so the images render:
 
-- `public/screenshots/screenshot-1.png` (start view)
-- `public/screenshots/screenshot-2.png` (playing view)
+
+START VIEW:
 
 ![Start view](public/screenshots/screenshot-1.png)
 
+PLAYING VIEW:
 ![Playing view](public/screenshots/screenshot-2.png)
 
 ## Features
@@ -73,6 +74,3 @@ npm run preview
 
 This project is MIT-licensed — adapt as you like.
 
----
-
-If you'd like, I can add the screenshot files into `public/screenshots/` for you now. Would you like me to do that?
