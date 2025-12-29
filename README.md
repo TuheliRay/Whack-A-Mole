@@ -47,17 +47,6 @@ Run the dev server:
 npm run dev
 ```
 
-Build for production:
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
 
 ## How to add the screenshots
 
