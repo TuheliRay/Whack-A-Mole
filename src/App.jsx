@@ -48,7 +48,7 @@ export default function App() {
   },[gameStarted])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col items-center p-4 text-green-400 font-mono">
+    <div className="min-h-screen bg-linear-to-br from-black via-gray-900 to-black flex flex-col items-center p-4 text-green-400 font-mono">
       
       {/* Header Section */}
       <div className="w-full max-w-md bg-black/70 rounded-2xl p-4 mb-20 shadow-[0_0_30px_#00ff9c] flex justify-between items-center text-sm sm:text-base">
@@ -70,7 +70,7 @@ export default function App() {
       <div className="grid grid-cols-3 gap-4 sm:gap-6 w-full max-w-xs sm:max-w-sm">
         {holesArray.map((_ , index) => (
           <div 
-            className="relative w-full aspect-square bg-gradient-to-b from-gray-800 to-gray-900 rounded-2xl shadow-inner flex items-center justify-center"
+            className="relative w-full aspect-square bg-linear-to-b from-gray-800 to-gray-900 rounded-2xl shadow-inner flex items-center justify-center"
             key={index}
           >
             {(activeHoles===index) && 
